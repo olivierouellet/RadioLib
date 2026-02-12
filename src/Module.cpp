@@ -258,6 +258,7 @@ int16_t Module::SPIreadStream(const uint8_t* cmd, uint8_t cmdLen, uint8_t* data,
   // check the status
   if(verify && (this->spiConfig.checkStatusCb != nullptr)) {
     state = this->spiConfig.checkStatusCb(this);
+    RADIOLIB_ASSERT(state);
   }
 
   return(state);
@@ -286,6 +287,7 @@ int16_t Module::SPIwriteStream(const uint8_t* cmd, uint8_t cmdLen, const uint8_t
   // check the status
   if(verify && (this->spiConfig.checkStatusCb != nullptr)) {
     state = this->spiConfig.checkStatusCb(this);
+    RADIOLIB_ASSERT(state);
   }
 
   return(state);
@@ -405,6 +407,7 @@ int16_t Module::SPItransferStream(const uint8_t* cmd, uint8_t cmdLen, bool write
   // parse status (only if GPIO did not timeout)
   if((state == RADIOLIB_ERR_NONE) && (this->spiConfig.parseStatusCb != nullptr) && (numBytes > 0)) {
     state = this->spiConfig.parseStatusCb(buffIn[this->spiConfig.statusPos]);
+    RADIOLIB_ASSERT(state);
   }
   
   // copy the data

@@ -39,6 +39,7 @@ int16_t PhysicalLayer::transmit(__FlashStringHelper* fstr, uint8_t addr) {
 
   // transmit string
   int16_t state = transmit(str, addr);
+  RADIOLIB_ASSERT(state);
   #if !RADIOLIB_STATIC_ONLY
     delete[] str;
   #endif
@@ -83,6 +84,7 @@ int16_t PhysicalLayer::receive(String& str, size_t len, RadioLibTime_t timeout) 
 
   // attempt packet reception
   state = receive(data, length, timeout);
+  RADIOLIB_ASSERT(state);
 
   // any of the following leads to at least some data being available
   // let's leave the decision of whether to keep it or not up to the user
@@ -202,6 +204,7 @@ int16_t PhysicalLayer::readData(String& str, size_t len) {
 
   // read the received data
   state = readData(data, length);
+  RADIOLIB_ASSERT(state);
 
   // any of the following leads to at least some data being available
   // let's leave the decision of whether to keep it or not up to the user
@@ -438,6 +441,8 @@ int16_t PhysicalLayer::startDirect() {
 
   // set frequency deviation to the lowest possible value
   state = setFrequencyDeviation(-1);
+  RADIOLIB_ASSERT(state);
+  
   return(state);
 }
 

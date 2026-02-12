@@ -194,6 +194,7 @@ int16_t SX126x::reset(bool verify) {
   while(true) {
     // try to set mode to standby
     int16_t state = standby();
+    RADIOLIB_ASSERT(state);
     if(state == RADIOLIB_ERR_NONE) {
       // standby command successful
       return(RADIOLIB_ERR_NONE);
@@ -309,6 +310,7 @@ int16_t SX126x::receive(uint8_t* data, size_t len, RadioLibTime_t timeout) {
 
   // if it was a timeout, this will return an error code
   state = standby();
+  RADIOLIB_ASSERT(state);
   if((state != RADIOLIB_ERR_NONE) && (state != RADIOLIB_ERR_SPI_CMD_TIMEOUT)) {
     RADIOLIB_DEBUG_BASIC_PRINTLN("Rx timeout not an SPI command timeout");
     return(state);
@@ -580,8 +582,10 @@ int16_t SX126x::startReceiveCommon(uint32_t timeout, RadioLibIrqFlags_t irqFlags
   uint8_t modem = getPacketType();
   if(modem == RADIOLIB_SX126X_PACKET_TYPE_LORA) {
     state = setPacketParams(this->preambleLengthLoRa, this->crcTypeLoRa, this->implicitLen, this->headerType, this->invertIQEnabled);
+    RADIOLIB_ASSERT(state);
   } else if(modem == RADIOLIB_SX126X_PACKET_TYPE_GFSK) {
     state = setPacketParamsFSK(this->preambleLengthFSK, this->preambleDetLength, this->crcTypeFSK, this->syncWordLength, RADIOLIB_SX126X_GFSK_ADDRESS_FILT_OFF, this->whitening, this->packetType);
+    RADIOLIB_ASSERT(state);
   } else {
     return(RADIOLIB_ERR_UNKNOWN);
   }
@@ -594,6 +598,7 @@ int16_t SX126x::readData(uint8_t* data, size_t len) {
   // if that's the case, the first call will return "SPI command timeout error"
   // check the IRQ to be sure this really originated from timeout event
   int16_t state = this->mod->SPIcheckStream();
+  RADIOLIB_ASSERT(state);
   uint16_t irq = getIrqFlags();
   if((state == RADIOLIB_ERR_SPI_CMD_TIMEOUT) && (irq & RADIOLIB_SX126X_IRQ_TIMEOUT)) {
     // this is definitely Rx timeout
@@ -623,6 +628,7 @@ int16_t SX126x::readData(uint8_t* data, size_t len) {
 
   // clear interrupt flags
   state = clearIrqStatus();
+  RADIOLIB_ASSERT(state);
 
   // check if CRC failed - this is done after reading data to give user the option to keep them
   RADIOLIB_ASSERT(crcState);
@@ -668,6 +674,7 @@ int16_t SX126x::startChannelScan(const ChannelScanConfig_t &config) {
 
   // set mode to CAD
   state = setCad(config.cad.symNum, config.cad.detPeak, config.cad.detMin, config.cad.exitMode, config.cad.timeout);
+  RADIOLIB_ASSERT(state);
   return(state);
 }
 
@@ -1039,10 +1046,12 @@ int16_t SX126x::stageMode(RadioModeType_t mode, RadioModeConfig_t* cfg) {
       uint8_t modem = getPacketType();
       if(modem == RADIOLIB_SX126X_PACKET_TYPE_LORA) {
         state = setPacketParams(this->preambleLengthLoRa, this->crcTypeLoRa, cfg->transmit.len, this->headerType, this->invertIQEnabled);
+        RADIOLIB_ASSERT(state);
       
       } else if(modem == RADIOLIB_SX126X_PACKET_TYPE_GFSK) {
         state = setPacketParamsFSK(this->preambleLengthFSK, this->preambleDetLength, this->crcTypeFSK, this->syncWordLength, RADIOLIB_SX126X_GFSK_ADDRESS_FILT_OFF, this->whitening, this->packetType, cfg->transmit.len);
-      
+        RADIOLIB_ASSERT(state);
+
       } else if(modem == RADIOLIB_SX126X_PACKET_TYPE_BPSK) {
         uint16_t rampUp = RADIOLIB_SX126X_BPSK_RAMP_UP_TIME_600_BPS;
         uint16_t rampDown = RADIOLIB_SX126X_BPSK_RAMP_DOWN_TIME_600_BPS;
@@ -1051,6 +1060,7 @@ int16_t SX126x::stageMode(RadioModeType_t mode, RadioModeConfig_t* cfg) {
           rampDown = RADIOLIB_SX126X_BPSK_RAMP_DOWN_TIME_100_BPS;
         }
         state = setPacketParamsBPSK(cfg->transmit.len, rampUp, rampDown, 8*cfg->transmit.len);
+        RADIOLIB_ASSERT(state);
       
       } else if(modem != RADIOLIB_SX126X_PACKET_TYPE_LR_FHSS) {
         return(RADIOLIB_ERR_UNKNOWN);
@@ -1073,6 +1083,7 @@ int16_t SX126x::stageMode(RadioModeType_t mode, RadioModeConfig_t* cfg) {
       // write packet to buffer
       if(modem != RADIOLIB_SX126X_PACKET_TYPE_LR_FHSS) {
         state = writeBuffer(cfg->transmit.data, cfg->transmit.len);
+        RADIOLIB_ASSERT(state);
       
       } else {
         // first, reset the LR-FHSS state machine
@@ -1139,6 +1150,7 @@ int16_t SX126x::launchMode() {
     case(RADIOLIB_RADIO_MODE_RX): {
       this->mod->setRfSwitchState(Module::MODE_RX);
       state = setRx(this->rxTimeout);
+      RADIOLIB_ASSERT(state);
     } break;
   
     case(RADIOLIB_RADIO_MODE_TX): {
@@ -1292,7 +1304,8 @@ int16_t SX126x::calibrateImage(float freq) {
     state = SX126x::calibrateImageRejection(freq - 4.0f, freq + 4.0f);
   
   }
-  
+
+  RADIOLIB_ASSERT(state);
   return(state);
 }
 
@@ -1401,6 +1414,7 @@ int16_t SX126x::fixGFSK() {
   if(this->bitRate == 1200) {
     // workaround for 1.2 kbps
     state = this->mod->SPIsetRegValue(RADIOLIB_SX126X_REG_GFSK_FIX_3, 0x00, 4, 4);
+    RADIOLIB_ASSERT(state);
 
   } else if(this->bitRate == 600)  {
     // workaround for 0.6 kbps
@@ -1464,6 +1478,7 @@ int16_t SX126x::modSetup(float tcxoVoltage, bool useRegulatorLDO, uint8_t modem)
 
   // configure settings not accessible by API
   state = config(modem);
+  RADIOLIB_ASSERT(state);
 
   // if something failed, check the device errors
   if(state != RADIOLIB_ERR_NONE) {
@@ -1489,8 +1504,10 @@ int16_t SX126x::modSetup(float tcxoVoltage, bool useRegulatorLDO, uint8_t modem)
 
   if (useRegulatorLDO) {
     state = setRegulatorLDO();
+    RADIOLIB_ASSERT(state);
   } else {
     state = setRegulatorDCDC();
+    RADIOLIB_ASSERT(state);
   }
   return(state);
 }

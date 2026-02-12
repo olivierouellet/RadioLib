@@ -21,6 +21,7 @@ int16_t SX126x::sleep(bool retainConfig) {
     sleepMode = RADIOLIB_SX126X_SLEEP_START_COLD | RADIOLIB_SX126X_SLEEP_RTC_OFF;
   }
   int16_t state = this->mod->SPIwriteStream(RADIOLIB_SX126X_CMD_SET_SLEEP, &sleepMode, 1, false, false);
+  RADIOLIB_ASSERT(state);
 
   // wait for SX126x to safely enter sleep mode
   this->mod->hal->delay(1);
@@ -120,6 +121,7 @@ int16_t SX126x::readRegister(uint16_t addr, uint8_t* data, uint8_t numBytes) {
 
   // check the status
   int16_t state = this->mod->SPIcheckStream();
+  RADIOLIB_ASSERT(state);
   return(state);
 }
 
@@ -153,6 +155,7 @@ int16_t SX126x::setRfFrequency(uint32_t frf) {
 
 int16_t SX126x::calibrateImage(const uint8_t* data) {
   int16_t state = this->mod->SPIwriteStream(RADIOLIB_SX126X_CMD_CALIBRATE_IMAGE, data, 2);
+  RADIOLIB_ASSERT(state);
 
   // if something failed, show the device errors
   #if RADIOLIB_DEBUG_BASIC
@@ -175,6 +178,7 @@ uint8_t SX126x::getPacketType() {
 int16_t SX126x::setTxParams(uint8_t pwr, uint8_t rampTime) {
   const uint8_t data[] = { pwr, rampTime };
   int16_t state = this->mod->SPIwriteStream(RADIOLIB_SX126X_CMD_SET_TX_PARAMS, data, 2);
+  RADIOLIB_ASSERT(state);
   if(state == RADIOLIB_ERR_NONE) {
     this->pwr = pwr;
   }
