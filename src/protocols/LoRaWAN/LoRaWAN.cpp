@@ -1414,6 +1414,7 @@ int16_t LoRaWANNode::transmitUplink(const LoRaWANChannel_t* chnl, uint8_t* in, u
   const DataRate_t* dr = &this->band->dataRates[currentDr].dr;
   const PacketConfig_t* pc = &this->band->dataRates[currentDr].pc;
   RadioLibTime_t toa = this->phyLayer->calculateTimeOnAir(modem, *dr, *pc, len) / 1000;
+  RADIOLIB_DEBUG_PROTOCOL_PRINTLN("TEstimated ToA: %lu", (unsigned long)toa);
 
   if(this->dwellTimeUp) {
     if(toa > this->dwellTimeUp) {
@@ -1432,6 +1433,8 @@ int16_t LoRaWANNode::transmitUplink(const LoRaWANChannel_t* chnl, uint8_t* in, u
   modeCfg.transmit.data = in;
   modeCfg.transmit.len = len;
   modeCfg.transmit.addr = 0;
+  RADIOLIB_DEBUG_PROTOCOL_PRINTLN("Transmitting. Data :%d, len: %d", in, len);
+
   state = this->phyLayer->stageMode(RADIOLIB_RADIO_MODE_TX, &modeCfg);
   RADIOLIB_ASSERT(state);
   
