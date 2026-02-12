@@ -202,6 +202,7 @@ int16_t SX126x::reset(bool verify) {
     // standby command failed, check timeout and try again
     if(this->mod->hal->millis() - start >= 1000) {
       // timed out, possibly incorrect wiring
+      RADIOLIB_DEBUG_BASIC_PRINTLN("Standby failed during reset!");
       return(state);
     }
 
@@ -248,6 +249,7 @@ int16_t SX126x::transmit(const uint8_t* data, size_t len, uint8_t addr) {
 
     // check timeout
     if(this->mod->hal->millis() - start > timeout) {
+      RADIOLIB_DEBUG_BASIC_PRINTLN("Tx timeout during transmit!");
       finishTransmit();
       return(RADIOLIB_ERR_TX_TIMEOUT);
     }
@@ -300,6 +302,7 @@ int16_t SX126x::receive(uint8_t* data, size_t len, RadioLibTime_t timeout) {
     // safety check, the timeout should be done by the radio
     if(this->mod->hal->millis() - start > timeoutInternal) {
       softTimeout = true;
+      RADIOLIB_DEBUG_BASIC_PRINTLN("Rx timeout during receive!");
       break;
     }
   }
@@ -307,11 +310,13 @@ int16_t SX126x::receive(uint8_t* data, size_t len, RadioLibTime_t timeout) {
   // if it was a timeout, this will return an error code
   state = standby();
   if((state != RADIOLIB_ERR_NONE) && (state != RADIOLIB_ERR_SPI_CMD_TIMEOUT)) {
+    RADIOLIB_DEBUG_BASIC_PRINTLN("Rx timeout not an SPI command timeout");
     return(state);
   }
 
   // check whether this was a timeout or not
   if(softTimeout || (getIrqFlags() & this->irqMap[RADIOLIB_IRQ_TIMEOUT])) {
+    RADIOLIB_DEBUG_BASIC_PRINTLN("Rx timeout is a Software timeout or an Irq timeout");
     (void)finishReceive();
     return(RADIOLIB_ERR_RX_TIMEOUT);
   }
@@ -440,6 +445,7 @@ int16_t SX126x::scanChannel(const ChannelScanConfig_t &config) {
 
 int16_t SX126x::hopLRFHSS() {
   if(!(this->getIrqFlags() & RADIOLIB_SX126X_IRQ_LR_FHSS_HOP)) {
+    RADIOLIB_DEBUG_BASIC_PRINTLN("Tx timeout waiting for Irq!");
     return(RADIOLIB_ERR_TX_TIMEOUT);
   }
 
@@ -591,6 +597,7 @@ int16_t SX126x::readData(uint8_t* data, size_t len) {
   uint16_t irq = getIrqFlags();
   if((state == RADIOLIB_ERR_SPI_CMD_TIMEOUT) && (irq & RADIOLIB_SX126X_IRQ_TIMEOUT)) {
     // this is definitely Rx timeout
+    RADIOLIB_DEBUG_BASIC_PRINTLN("Data can't be read (Rx timeout)");
     return(RADIOLIB_ERR_RX_TIMEOUT);
   }
   RADIOLIB_ASSERT(state);
@@ -1236,6 +1243,7 @@ int16_t SX126x::spectralScanGetStatus() {
   if(status == RADIOLIB_SX126X_SPECTRAL_SCAN_COMPLETED) {
     return(RADIOLIB_ERR_NONE);
   }
+  RADIOLIB_DEBUG_BASIC_PRINTLN("Spectral scan timeout!");
   return(RADIOLIB_ERR_RANGING_TIMEOUT);
 }
 
@@ -1489,12 +1497,16 @@ int16_t SX126x::modSetup(float tcxoVoltage, bool useRegulatorLDO, uint8_t modem)
 
 int16_t SX126x::SPIparseStatus(uint8_t in) {
   if((in & 0b00001110) == RADIOLIB_SX126X_STATUS_CMD_TIMEOUT) {
+    RADIOLIB_DEBUG_BASIC_PRINTLN("Status command timeout!");
     return(RADIOLIB_ERR_SPI_CMD_TIMEOUT);
   } else if((in & 0b00001110) == RADIOLIB_SX126X_STATUS_CMD_INVALID) {
+    RADIOLIB_DEBUG_BASIC_PRINTLN("Status command invalid!");
     return(RADIOLIB_ERR_SPI_CMD_INVALID);
   } else if((in & 0b00001110) == RADIOLIB_SX126X_STATUS_CMD_FAILED) {
+    RADIOLIB_DEBUG_BASIC_PRINTLN("Status command failed!");
     return(RADIOLIB_ERR_SPI_CMD_FAILED);
   } else if((in == 0x00) || (in == 0xFF)) {
+    RADIOLIB_DEBUG_BASIC_PRINTLN("Chip not found!");
     return(RADIOLIB_ERR_CHIP_NOT_FOUND);
   }
   return(RADIOLIB_ERR_NONE);
