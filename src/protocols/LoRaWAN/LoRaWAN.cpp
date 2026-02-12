@@ -1462,6 +1462,7 @@ int16_t LoRaWANNode::transmitUplink(const LoRaWANChannel_t* chnl, uint8_t* in, u
     mod->hal->yield();
 
     if(mod->hal->millis() > txEnd + this->scanGuard) {
+      RADIOLIB_DEBUG_PROTOCOL_PRINTLN("Tx timeout waiting for Irq!");
       return(RADIOLIB_ERR_TX_TIMEOUT);
     }
   }
@@ -1565,6 +1566,7 @@ int16_t LoRaWANNode::receiveClassA(uint8_t dir, const LoRaWANChannel_t* dlChanne
   // check IRQ bit for RxTimeout
   int16_t timedOut = this->phyLayer->checkIrq(RADIOLIB_IRQ_TIMEOUT);
   if(timedOut == RADIOLIB_ERR_UNSUPPORTED) {
+    RADIOLIB_DEBUG_PROTOCOL_PRINTLN("Error checking Irq (Receive class A)!");
     return(timedOut);
   }
 
@@ -1670,6 +1672,7 @@ int16_t LoRaWANNode::receiveClassC(RadioLibTime_t timeout) {
     // check IRQ bit for RxTimeout
     int16_t timedOut = this->phyLayer->checkIrq(RADIOLIB_IRQ_TIMEOUT);
     if(timedOut == RADIOLIB_ERR_UNSUPPORTED) {
+      RADIOLIB_DEBUG_PROTOCOL_PRINTLN("Error checking Irq (Receive class C)!");
       return(timedOut);
     }
 
