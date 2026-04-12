@@ -1,5 +1,7 @@
 var annotated_dup =
 [
+    [ "ADSBClient", "class_a_d_s_b_client.html", "class_a_d_s_b_client" ],
+    [ "ADSBFrame", "struct_a_d_s_b_frame.html", "struct_a_d_s_b_frame" ],
     [ "AFSKClient", "class_a_f_s_k_client.html", "class_a_f_s_k_client" ],
     [ "APRSClient", "class_a_p_r_s_client.html", "class_a_p_r_s_client" ],
     [ "AX25Client", "class_a_x25_client.html", "class_a_x25_client" ],
@@ -28,7 +30,11 @@ var annotated_dup =
     [ "LoRaWANJoinEvent_t", "struct_lo_ra_w_a_n_join_event__t.html", "struct_lo_ra_w_a_n_join_event__t" ],
     [ "LoRaWANMacCommand_t", "struct_lo_ra_w_a_n_mac_command__t.html", "struct_lo_ra_w_a_n_mac_command__t" ],
     [ "LoRaWANNode", "class_lo_ra_w_a_n_node.html", "class_lo_ra_w_a_n_node" ],
+    [ "LoRaWANPackage", "class_lo_ra_w_a_n_package.html", "class_lo_ra_w_a_n_package" ],
     [ "LoRaWANPackage_t", "struct_lo_ra_w_a_n_package__t.html", "struct_lo_ra_w_a_n_package__t" ],
+    [ "LoRaWANPackageManager", "class_lo_ra_w_a_n_package_manager.html", "class_lo_ra_w_a_n_package_manager" ],
+    [ "LoRaWANPackageTS009", "class_lo_ra_w_a_n_package_t_s009.html", "class_lo_ra_w_a_n_package_t_s009" ],
+    [ "LoRaWANTaskInfo", "struct_lo_ra_w_a_n_task_info.html", null ],
     [ "LR1110", "class_l_r1110.html", "class_l_r1110" ],
     [ "LR1120", "class_l_r1120.html", "class_l_r1120" ],
     [ "LR1121", "class_l_r1121.html", "class_l_r1121" ],
@@ -58,6 +64,7 @@ var annotated_dup =
     [ "PiHal", "class_pi_hal.html", "class_pi_hal" ],
     [ "RadioLibAES128", "class_radio_lib_a_e_s128.html", "class_radio_lib_a_e_s128" ],
     [ "RadioLibBCH", "class_radio_lib_b_c_h.html", "class_radio_lib_b_c_h" ],
+    [ "RadioLibCmacState", "struct_radio_lib_cmac_state.html", null ],
     [ "RadioLibConvCode", "class_radio_lib_conv_code.html", "class_radio_lib_conv_code" ],
     [ "RadioLibCRC", "class_radio_lib_c_r_c.html", "class_radio_lib_c_r_c" ],
     [ "RadioLibHal", "class_radio_lib_hal.html", "class_radio_lib_hal" ],

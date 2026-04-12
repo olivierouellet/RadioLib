@@ -322,11 +322,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afb35ae71215ecbaff2262887171cfd7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the temperature.  <br /></td></tr>
 <tr class="separator:afb35ae71215ecbaff2262887171cfd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a444ec095ed8bd08df909b3b1b899d35e" id="r_a444ec095ed8bd08df909b3b1b899d35e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#a444ec095ed8bd08df909b3b1b899d35e">getRSSI</a> () override</td></tr>
-<tr class="memdesc:a444ec095ed8bd08df909b3b1b899d35e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets recorded signal strength indicator. Overload with packet mode enabled for <a class="el" href="class_physical_layer.html" title="Provides common interface for protocols that run on LoRa/FSK modules, such as RTTY or LoRaWAN....">PhysicalLayer</a> compatibility.  <br /></td></tr>
+<tr class="memdesc:a444ec095ed8bd08df909b3b1b899d35e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets received signal strength indicator. Overload with packet mode enabled for <a class="el" href="class_physical_layer.html" title="Provides common interface for protocols that run on LoRa/FSK modules, such as RTTY or LoRaWAN....">PhysicalLayer</a> compatibility.  <br /></td></tr>
 <tr class="separator:a444ec095ed8bd08df909b3b1b899d35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ff5cc6b2bcad81afbb9128986edcba7" id="r_a7ff5cc6b2bcad81afbb9128986edcba7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#a7ff5cc6b2bcad81afbb9128986edcba7">getRSSI</a> (bool packet)</td></tr>
-<tr class="memdesc:a7ff5cc6b2bcad81afbb9128986edcba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets RSSI (Recorded Signal Strength Indicator).  <br /></td></tr>
-<tr class="separator:a7ff5cc6b2bcad81afbb9128986edcba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11674102f4d704d02d27eaceeaeccd35" id="r_a11674102f4d704d02d27eaceeaeccd35"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#a11674102f4d704d02d27eaceeaeccd35">getRSSI</a> (bool packet, bool skipReceive=false)</td></tr>
+<tr class="memdesc:a11674102f4d704d02d27eaceeaeccd35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets RSSI (Received Signal Strength Indicator).  <br /></td></tr>
+<tr class="separator:a11674102f4d704d02d27eaceeaeccd35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addaf960d942fbff38c12ccb38b137122" id="r_addaf960d942fbff38c12ccb38b137122"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#addaf960d942fbff38c12ccb38b137122">getSNR</a> () override</td></tr>
 <tr class="memdesc:addaf960d942fbff38c12ccb38b137122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets SNR (Signal to Noise Ratio) of the last received packet. Only available for LoRa modem.  <br /></td></tr>
 <tr class="separator:addaf960d942fbff38c12ccb38b137122"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -342,9 +342,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af4aaffbca82fd163c09e004d9df205f1" id="r_af4aaffbca82fd163c09e004d9df205f1"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#af4aaffbca82fd163c09e004d9df205f1">ookDetector</a> (uint16_t pattern=0x0285, uint8_t len=16, uint8_t repeats=0, bool syncRaw=false, bool rising=false, uint8_t sofLen=0)</td></tr>
 <tr class="memdesc:af4aaffbca82fd163c09e004d9df205f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set OOK detector properties. The default values are set to allow ADS-B reception.  <br /></td></tr>
 <tr class="separator:af4aaffbca82fd163c09e004d9df205f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e88077f2e75c598e0ca820196d7ed9d" id="r_a4e88077f2e75c598e0ca820196d7ed9d"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#a4e88077f2e75c598e0ca820196d7ed9d">setOokDetectionThreshold</a> (int16_t level)</td></tr>
+<tr class="memdesc:a4e88077f2e75c598e0ca820196d7ed9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set OOK detection threshold.  <br /></td></tr>
+<tr class="separator:a4e88077f2e75c598e0ca820196d7ed9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca2d2d22e793e32c50efd5f01881979e" id="r_aca2d2d22e793e32c50efd5f01881979e"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#aca2d2d22e793e32c50efd5f01881979e">setSideDetector</a> (const <a class="el" href="struct_l_r2021_lo_ra_side_detector__t.html">LR2021LoRaSideDetector_t</a> *cfg, size_t numDetectors)</td></tr>
 <tr class="memdesc:aca2d2d22e793e32c50efd5f01881979e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure LoRa side detector, which enables to detect mutiple spreading factors and receive one of them. The following limitations apply: In Rx mode, all side-detector spreading factors must be higher than the primary one (configured via begin or setSpreadingFactor) For CAD mode, the above condition is inverted - all side-detector spreading factors must be smaller All packets to be detected must have the same header type (implicit or explicit) If bandwidth is higher than 500 kHz, at most 2 side detectors are allowed. If the primary spreading factor is 10, 11 or 12, at most 2 side detectors are allowed. All spreading factors must be different. The difference between maximum and minimum spreading factor used must be less than or equal to 4.  <br /></td></tr>
 <tr class="separator:aca2d2d22e793e32c50efd5f01881979e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a874b2522d4b296505278d943df308a99" id="r_a874b2522d4b296505278d943df308a99"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#a874b2522d4b296505278d943df308a99">setGain</a> (uint8_t gain)</td></tr>
+<tr class="memdesc:a874b2522d4b296505278d943df308a99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets gain of receiver LNA (low-noise amplifier). Can be set to any integer in range 1 to 13, where 13 is the highest gain. Set to 0 to enable automatic gain control (recommended).  <br /></td></tr>
+<tr class="separator:a874b2522d4b296505278d943df308a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766ef834a27b53d2ab74b0e98c77e2c2" id="r_a766ef834a27b53d2ab74b0e98c77e2c2"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#a766ef834a27b53d2ab74b0e98c77e2c2">getLoRaPacketStatus</a> (uint8_t *cr, bool *crc, uint8_t *packetLen=NULL, float *snrPacket=NULL, float *rssiPacket=NULL, float *rssiSignalPacket=NULL)</td></tr>
+<tr class="memdesc:a766ef834a27b53d2ab74b0e98c77e2c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read status of the last received packet. Each parameter can be set to NULL if the caller is not intending to process it.  <br /></td></tr>
+<tr class="separator:a766ef834a27b53d2ab74b0e98c77e2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f88f57889841379423aef67aaf8a7e0" id="r_a1f88f57889841379423aef67aaf8a7e0"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#a1f88f57889841379423aef67aaf8a7e0">getLoRaRxHeaderInfo</a> (uint8_t *cr, bool *hasCRC)</td></tr>
+<tr class="memdesc:a1f88f57889841379423aef67aaf8a7e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get LoRa header information from last received packet. Implementation based on getLoRaPacketStatus.  <br /></td></tr>
+<tr class="separator:a1f88f57889841379423aef67aaf8a7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a492b2d057dd803c3884fa1adc8e22534" id="r_a492b2d057dd803c3884fa1adc8e22534"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_r2021.html#a492b2d057dd803c3884fa1adc8e22534">transmit</a> (const char *str, uint8_t addr=0)</td></tr>
 <tr class="memdesc:a492b2d057dd803c3884fa1adc8e22534"><td class="mdescLeft">&#160;</td><td class="mdescRight">C-string transmit method.  <br /></td></tr>
 <tr class="separator:a492b2d057dd803c3884fa1adc8e22534"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -472,6 +484,10 @@ Public Attributes</h2></td></tr>
 uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>irqDioNum</b> = 5</td></tr>
 <tr class="memdesc:a66b9703e39e95dc14e72328aee9becd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which DIO pin is to be used as the interrupt pin. <br /></td></tr>
 <tr class="separator:a66b9703e39e95dc14e72328aee9becd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24b3a41d84fc6a0ebc214479f163eb71" id="r_a24b3a41d84fc6a0ebc214479f163eb71"><td class="memItemLeft" align="right" valign="top"><a id="a24b3a41d84fc6a0ebc214479f163eb71" name="a24b3a41d84fc6a0ebc214479f163eb71"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>fastCad</b> = false</td></tr>
+<tr class="memdesc:a24b3a41d84fc6a0ebc214479f163eb71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the type of Lora CAD to perform, either "standard" CAD (same as is implem,ented <a class="el" href="class_l_r11x0.html" title="Base class for LR11x0 series. All derived classes for LR11x0 (e.g. LR1110 or LR1120) inherit from thi...">LR11x0</a>, <a class="el" href="class_s_x126x.html" title="Base class for SX126x series. All derived classes for SX126x (e.g. SX1262 or SX1268) inherit from thi...">SX126x</a> and others), or a "fast" CAD if set to true. If there is no signal to be detected, fast CAD should return faster than standard CAD. <br /></td></tr>
+<tr class="separator:a24b3a41d84fc6a0ebc214479f163eb71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_l_rxxxx"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_l_rxxxx')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_l_rxxxx.html">LRxxxx</a></td></tr>
 <tr class="memitem:aedc6b7f69451ab79e05f5d9ff757fb20 inherit pub_attribs_class_l_rxxxx" id="r_aedc6b7f69451ab79e05f5d9ff757fb20"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>XTAL</b></td></tr>
@@ -1223,6 +1239,110 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>maxPacketLength</b>
 
 </div>
 </div>
+<a id="a766ef834a27b53d2ab74b0e98c77e2c2" name="a766ef834a27b53d2ab74b0e98c77e2c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a766ef834a27b53d2ab74b0e98c77e2c2">&#9670;&#160;</a></span>getLoRaPacketStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t LR2021::getLoRaPacketStatus </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>cr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool *&#160;</td>
+          <td class="paramname"><em>crc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>packetLen</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>snrPacket</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>rssiPacket</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>rssiSignalPacket</em> = <code>NULL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read status of the last received packet. Each parameter can be set to NULL if the caller is not intending to process it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cr</td><td>Coding rate of the last received packet </td></tr>
+    <tr><td class="paramname">crc</td><td>Will be set to true if the last packet had a CRC, false otherwise </td></tr>
+    <tr><td class="paramname">packetLen</td><td>Length of the last received packet in bytes </td></tr>
+    <tr><td class="paramname">snrPacket</td><td>SNR of the last received packet in dB </td></tr>
+    <tr><td class="paramname">rssiPacket</td><td>RSSI of the last received packet in dBm </td></tr>
+    <tr><td class="paramname">rssiSignalPacket</td><td>Estimation of the RSSI of LoRa signal after despreading in dBm </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__status__codes.html">Status Codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1f88f57889841379423aef67aaf8a7e0" name="a1f88f57889841379423aef67aaf8a7e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f88f57889841379423aef67aaf8a7e0">&#9670;&#160;</a></span>getLoRaRxHeaderInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t LR2021::getLoRaRxHeaderInfo </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>cr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool *&#160;</td>
+          <td class="paramname"><em>hasCRC</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get LoRa header information from last received packet. Implementation based on getLoRaPacketStatus. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cr</td><td>Pointer to variable to store the coding rate. </td></tr>
+    <tr><td class="paramname">hasCRC</td><td>Pointer to variable to store the CRC status. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__status__codes.html">Status Codes</a> </dd></dl>
+
+</div>
+</div>
 <a id="a8d7069e59abecae1e4b48de5920da4b3" name="a8d7069e59abecae1e4b48de5920da4b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d7069e59abecae1e4b48de5920da4b3">&#9670;&#160;</a></span>getModem()</h2>
 
@@ -1320,15 +1440,15 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>maxPacketLength</b>
 </table>
 </div><div class="memdoc">
 
-<p>Gets recorded signal strength indicator. Overload with packet mode enabled for <a class="el" href="class_physical_layer.html" title="Provides common interface for protocols that run on LoRa/FSK modules, such as RTTY or LoRaWAN....">PhysicalLayer</a> compatibility. </p>
+<p>Gets received signal strength indicator. Overload with packet mode enabled for <a class="el" href="class_physical_layer.html" title="Provides common interface for protocols that run on LoRa/FSK modules, such as RTTY or LoRaWAN....">PhysicalLayer</a> compatibility. </p>
 <dl class="section return"><dt>Returns</dt><dd>RSSI value in dBm. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_physical_layer.html#aabc94ab27a9ee6daaafa9b47dde5f75b">PhysicalLayer</a>.</p>
 
 </div>
 </div>
-<a id="a7ff5cc6b2bcad81afbb9128986edcba7" name="a7ff5cc6b2bcad81afbb9128986edcba7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ff5cc6b2bcad81afbb9128986edcba7">&#9670;&#160;</a></span>getRSSI() <span class="overload">[2/2]</span></h2>
+<a id="a11674102f4d704d02d27eaceeaeccd35" name="a11674102f4d704d02d27eaceeaeccd35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11674102f4d704d02d27eaceeaeccd35">&#9670;&#160;</a></span>getRSSI() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1337,16 +1457,27 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>maxPacketLength</b>
           <td class="memname">float LR2021::getRSSI </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>packet</em></td><td>)</td>
+          <td class="paramname"><em>packet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>skipReceive</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets RSSI (Recorded Signal Strength Indicator). </p>
+<p>Gets RSSI (Received Signal Strength Indicator). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">packet</td><td>Whether to read last packet RSSI, or the current value. </td></tr>
+    <tr><td class="paramname">packet</td><td>Whether to read last packet RSSI, or the current value. NOTE: With OOK modem, the "packet" RSSI value is the received power level of the high bits (digital 1). </td></tr>
+    <tr><td class="paramname">skipReceive</td><td>Set to true to skip putting radio in receive mode for instantaneous RSSI measurement. If false, after the RSSI measurement, the radio will be in standby mode. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1637,7 +1768,7 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>maxPacketLength</b>
     <tr><td class="paramname">pattern</td><td>Preamble pattern, should end with 01 or 10 (binary). </td></tr>
     <tr><td class="paramname">len</td><td>Preamble pattern length in bits. </td></tr>
     <tr><td class="paramname">repeats</td><td>Number of preamble repeats, maximum of 31. </td></tr>
-    <tr><td class="paramname">syncRaw</td><td>Whether the sync word is send raw (unencoded) or encoded. Set to true for encoded sync word. </td></tr>
+    <tr><td class="paramname">syncRaw</td><td>Whether the sync word is send raw (unencoded) or encoded. Set to false for encoded sync word. </td></tr>
     <tr><td class="paramname">rising</td><td>Whether the start of frame delimiter edge is rising (true) or falling (false). </td></tr>
     <tr><td class="paramname">sofLen</td><td>Start-of-frame length in bits. </td></tr>
   </table>
@@ -1768,7 +1899,6 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>maxPacketLength</b>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__status__codes.html">Status Codes</a> </dd></dl>
-<p>\TODO: [<a class="el" href="class_l_r2021.html">LR2021</a>] legacy from <a class="el" href="class_l_r11x0.html" title="Base class for LR11x0 series. All derived classes for LR11x0 (e.g. LR1110 or LR1120) inherit from thi...">LR11x0</a>, is it still needed?</p>
 
 <p>Reimplemented from <a class="el" href="class_physical_layer.html#a3563453988a83d22dd07d4691543a300">PhysicalLayer</a>.</p>
 
@@ -2400,6 +2530,33 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>maxPacketLength</b>
 
 </div>
 </div>
+<a id="a874b2522d4b296505278d943df308a99" name="a874b2522d4b296505278d943df308a99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a874b2522d4b296505278d943df308a99">&#9670;&#160;</a></span>setGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t LR2021::setGain </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>gain</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets gain of receiver LNA (low-noise amplifier). Can be set to any integer in range 1 to 13, where 13 is the highest gain. Set to 0 to enable automatic gain control (recommended). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gain</td><td>Gain of receiver LNA (low-noise amplifier) to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__status__codes.html">Status Codes</a> </dd></dl>
+
+</div>
+</div>
 <a id="af2f977f788bc15e396dcb6025987c513" name="af2f977f788bc15e396dcb6025987c513"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af2f977f788bc15e396dcb6025987c513">&#9670;&#160;</a></span>setIrqFlags()</h2>
 
@@ -2546,6 +2703,33 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>maxPacketLength</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nodeAddr</td><td>Node address to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__status__codes.html">Status Codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="a4e88077f2e75c598e0ca820196d7ed9d" name="a4e88077f2e75c598e0ca820196d7ed9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e88077f2e75c598e0ca820196d7ed9d">&#9670;&#160;</a></span>setOokDetectionThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t LR2021::setOokDetectionThreshold </td>
+          <td>(</td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set OOK detection threshold. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>Threshold level in dB </td></tr>
   </table>
   </dd>
 </dl>
